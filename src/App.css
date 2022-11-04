@@ -93,7 +93,11 @@ margin-right: auto;
 .main__content{
 text-align: center;
 margin-top: 80px;
+display: none;
+}
 
+.main__content-active{
+  display: block;
 }
 
 .main__content-title{
@@ -151,7 +155,7 @@ margin-top: 80px;
   margin-top: 30px;
   background-color: #00BFFF;
   padding-top: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 27px;
 }
 
 .footer__developer-label{
@@ -179,6 +183,3 @@ margin-top: 80px;
   text-decoration: underline;
 }
 
-.hide{
-  display: none;
-}
