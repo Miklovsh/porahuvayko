@@ -126,13 +126,23 @@ display: none;
   max-width: 120px;
 }
 
+
 .main__content-box{
-  text-align: center;
+  display: flex;
+justify-content: center;
 }
 
 .main__content-out{
-  max-width: 607px;
-    text-align: end;
+  font-family: 'Times New Roman', Times, serif;
+  margin-right: 3px;
+}
+
+.red{
+  color: red;
+}
+
+.green{
+  color: green;
 }
 
 .main__content-btn{
