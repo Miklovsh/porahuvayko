@@ -8,10 +8,10 @@ function App(props) {
   const [firstGroupInputState, setFirstGroupInputState] = useState('');
 
   const [toggleState, setToggleState] = useState(1);
-  const [socialContributionState, setSocialContributionState] = useState('');
-  const [singleTaxState, setSingleTaxState] = useState('');
-  const [totalTaxAmountState, setTotalTaxAmount] = useState('');
-  const [amountReceivedState, setAmountReceived] = useState('');
+  const [esvFirstGroupState, setEsvFirstGroupState] = useState(''); 
+  const [taxFirstGroupState, setTaxFirstGroupState] = useState('');
+  const [costFirstGroupState, setCostFirstGroupState] = useState('');
+  const [receivedFirstGroupState, setReceivedFirstGroupState] = useState('');
 
 
   function toggleButton(index) {
@@ -36,10 +36,10 @@ function App(props) {
 
   function countFirstGroup() {
     if (firstGroupInputState.length > 0 && firstGroupInputState.length < 11) {
-      setSocialContributionState(`${props.socialContribution} гривень`);
-      setSingleTaxState(`${props.singleTax} гривень`);
-      setTotalTaxAmount(`${props.socialContribution + props.singleTax} гривень`);
-      setAmountReceived(`${firstGroupInput.current.value - props.socialContribution - props.singleTax} гривень`);
+      setEsvFirstGroupState(`${props.esv} гривень`);
+      setTaxFirstGroupState(`${props.taxFirstGroup} гривень`);
+      setCostFirstGroupState(`${props.esv + props.taxFirstGroup} гривень`);
+      setReceivedFirstGroupState(`${firstGroupInput.current.value - props.esv - props.taxFirstGroup} гривень`);
     } else {
       alert('Поле "Сума для оподаткування:" не може бути пустим або містити більше 10 символів!');
     }
@@ -72,19 +72,19 @@ function App(props) {
             <label className='main__content-label'>Сума для оподаткування:</label><input className='main__content-input' onKeyPress={validateInput} onChange={changeFirstGroupInput} ref={firstGroupInput} value={firstGroupInputState} type="number" name='first-group' /><label className='main__content-value'>гривень</label>
             <div className='main__content-box'>
               <p className='main__content-out'>Єдиний соціальний внесок:</p>
-              <p className='main__content-out'>{socialContributionState}</p>
+              <p className='main__content-out'>{esvFirstGroupState}</p>
             </div>
             <div className='main__content-box'>
               <p className='main__content-out'>Єдиний податок:</p>
-              <p className='main__content-out'>{singleTaxState}</p>
+              <p className='main__content-out'>{taxFirstGroupState}</p>
             </div>
             <div className='main__content-box'>
               <p className='main__content-out'>Загальна сума податку:</p>
-              <p className='main__content-out red'>{totalTaxAmountState}</p>
+              <p className='main__content-out red'>{costFirstGroupState}</p>
             </div>
             <div className='main__content-box'>
               <p className='main__content-out'>На руки отримаєте:</p>
-              <p className='main__content-out green'>{amountReceivedState}</p>
+              <p className='main__content-out green'>{receivedFirstGroupState}</p>
             </div>
             <input className='main__content-btn' type="button" onClick={countFirstGroup} value="Порахувати" />
           </div>
