@@ -4,22 +4,25 @@ import './App.css';
 
 function App(props) {
 
+  const [toggleState, setToggleState] = useState(1);
+
   let firstGroupInput = React.createRef();
   const [firstGroupInputState, setFirstGroupInputState] = useState('');
-
-  const [toggleState, setToggleState] = useState(1);
   const [esvFirstGroupState, setEsvFirstGroupState] = useState(''); 
   const [taxFirstGroupState, setTaxFirstGroupState] = useState('');
   const [costFirstGroupState, setCostFirstGroupState] = useState('');
   const [receivedFirstGroupState, setReceivedFirstGroupState] = useState('');
 
+  let secondGroupInput = React.createRef();
+  const [secondGroupInputState, setSecondGroupInputState] = useState(''); 
+  const [esvSecondGroupState, setEsvSecondGroupState] = useState(''); 
+  const [taxSecondGroupState, setTaxSecondGroupState] = useState('');
+  const [costSecondGroupState, setCostSecondGroupState] = useState('');
+  const [receivedSecondGroupState, setReceivedSecondGroupState] = useState('');
+
 
   function toggleButton(index) {
     setToggleState(index);
-  }
-
-  function changeFirstGroupInput() {
-    setFirstGroupInputState(firstGroupInput.current.value);
   }
 
   function validateInput(e) {
@@ -33,6 +36,9 @@ function App(props) {
     }
   }
 
+  function changeFirstGroupInput() {
+    setFirstGroupInputState(firstGroupInput.current.value);
+  }
 
   function countFirstGroup() {
     if (firstGroupInputState.length > 0 && firstGroupInputState.length < 11) {
@@ -43,6 +49,21 @@ function App(props) {
     } else {
       alert('Поле "Сума для оподаткування:" не може бути пустим або містити більше 10 символів!');
     }
+  }
+
+  function changeSecondGroupInput(){
+    setSecondGroupInputState(secondGroupInput.current.value);
+  }
+
+  function countSecondGroup() {
+if(secondGroupInputState.length > 0 && secondGroupInputState.length < 11){
+  setEsvSecondGroupState(`${props.esv} гривень`);
+  setTaxSecondGroupState(`${props.taxSecondGroup} гривень`);
+  setCostSecondGroupState(`${props.esv + props.taxSecondGroup} гривень`);
+  setReceivedSecondGroupState(`${secondGroupInput.current.value - props.esv - props.taxSecondGroup} гривень`)
+} else {
+  alert('Поле "Сума для оподаткування:" не може бути пустим або містити більше 10 символів!');
+}
   }
 
   return (
@@ -91,24 +112,24 @@ function App(props) {
           <div className={toggleState === 2 ? "main__content main__content-active" : "main__content"}>
             <h3 className='main__content-title'>Калькулятор податків для ФОП 2 група</h3>
             <p className='main__content-description'>Єдиний соціальний внесок - 1 474 гривень(22% від мінімальної зарплати). Єдиний податок - 1 300 гривень(20% від мінімальної зарплати станом на 1 січня)</p>
-            <label className='main__content-label'>Сума для оподаткування:</label><input className='main__content-input' type="text" name='second-group' /><label className='main__content-value'>гривень</label>
+            <label className='main__content-label'>Сума для оподаткування:</label><input className='main__content-input' onKeyPress={validateInput} onChange={changeSecondGroupInput} ref={secondGroupInput} value={secondGroupInputState} type="text" name='second-group' /><label className='main__content-value'>гривень</label>
             <div className='main__content-box'>
               <p className='main__content-out'>Єдиний соціальний внесок:</p>
-              <p className='main__content-out'></p>
+              <p className='main__content-out'>{esvSecondGroupState}</p>
             </div>
             <div className='main__content-box'>
               <p className='main__content-out'>Єдиний податок:</p>
-              <p className='main__content-out'></p>
+              <p className='main__content-out'>{taxSecondGroupState}</p>
             </div>
             <div className='main__content-box'>
               <p className='main__content-out'>Загальна сума податку:</p>
-              <p className='main__content-out red'></p>
+              <p className='main__content-out red'>{costSecondGroupState}</p>
             </div>
             <div className='main__content-box'>
               <p className='main__content-out'>На руки отримаєте:</p>
-              <p className='main__content-out green'></p>
+              <p className='main__content-out green'>{receivedSecondGroupState}</p>
             </div>
-            <input className='main__content-btn' type="button" value="Порахувати" />
+            <input className='main__content-btn' onClick={countSecondGroup} type="button" value="Порахувати" />
           </div>
           <div className={toggleState === 3 ? "main__content main__content-active" : "main__content"}>
             <h3 className='main__content-title'>Калькулятор податків для ФОП 3 група без ПДВ</h3>
