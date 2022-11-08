@@ -42,6 +42,14 @@ function App(props) {
   const [costThirdGroupState, setCostThirdGroupState] = useState('');
   const [receivedThirdGroupState, setReceivedThirdGroupState] = useState('');
 
+  let generalInput = React.createRef();
+  const [generalInputState, setGeneralInputState] = useState('');
+  const [esvGeneralState, setEsvGeneralState] = useState('');
+  const [taxGeneralState, setTaxGeneralState] = useState('');
+  const [vzGeneralState, setVzGeneralState] = useState(''); //стейт для поля Військовий збір
+  const [costGeneralState, setCostGeneralState] = useState('');
+  const [receivedGeneralState, setReceivedGeneralState] = useState('');
+
 
   function changeFirstGroupInput() {
     setFirstGroupInputState(firstGroupInput.current.value);
@@ -54,6 +62,10 @@ function App(props) {
     setThirdGroupInputState(thirdGroupInput.current.value);
   }
 
+  function changeGeneralInput() {
+    setGeneralInputState(generalInput.current.value);
+  }
+
   function countFirstGroup() {
     if (firstGroupInputState.length > 0 && firstGroupInputState.length < 11) {
       setEsvFirstGroupState(`${props.esv} гривень`);
@@ -64,7 +76,6 @@ function App(props) {
       alert('Поле "Сума для оподаткування:" не може бути пустим або містити більше 10 символів!');
     }
   }
-
 
   function countSecondGroup() {
     if (secondGroupInputState.length > 0 && secondGroupInputState.length < 11) {
@@ -83,6 +94,18 @@ function App(props) {
       setTaxThirdGroupState(`${(thirdGroupInput.current.value / 100 * props.taxThirdGroup)} гривень`);
       setCostThirdGroupState(`${props.esv + (thirdGroupInput.current.value / 100 * props.taxThirdGroup)} гривень`);
       setReceivedThirdGroupState(`${thirdGroupInput.current.value - props.esv - (thirdGroupInput.current.value / 100 * props.taxThirdGroup)} гривень`);
+    } else {
+      alert('Поле "Сума для оподаткування:" не може бути пустим або містити більше 10 символів!');
+    }
+  }
+
+  function countGeneral() {
+    if (generalInputState.length > 0 && generalInputState.length < 11) {
+      setEsvGeneralState(`${generalInput.current.value / 100 * props.generalEsv} гривень`);
+      setTaxGeneralState(`${generalInput.current.value / 100 * props.taxGeneral} гривень`);
+      setVzGeneralState(`${generalInput.current.value / 100 * props.vzGeneral} гривень`);
+      setCostGeneralState(`${(generalInput.current.value / 100 * props.generalEsv) + (generalInput.current.value / 100 * props.taxGeneral) + (generalInput.current.value / 100 * props.vzGeneral)} гривень`);
+      setReceivedGeneralState(`${generalInput.current.value - (generalInput.current.value / 100 * props.generalEsv) - (generalInput.current.value / 100 * props.taxGeneral) - (generalInput.current.value / 100 * props.vzGeneral)} гривень`);
     } else {
       alert('Поле "Сума для оподаткування:" не може бути пустим або містити більше 10 символів!');
     }
@@ -178,28 +201,28 @@ function App(props) {
           <div className={toggleState === 4 ? "main__content main__content-active" : "main__content"}>
             <h3 className='main__content-title'>Калькулятор податків для ФОПів які на загальній системі оподаткуванню</h3>
             <p className='main__content-description'>Єдиний соціальний внесок - 22%. Єдиний податок - 18%. Військовий збір - 1.5%</p>
-            <label className='main__content-label'>Сума для оподаткування:</label><input className='main__content-input' type="text" name='general-group' /><label className='main__content-value'>гривень</label>
+            <label className='main__content-label'>Сума для оподаткування:</label><input className='main__content-input' onKeyPress={validateInput} onChange={changeGeneralInput} ref={generalInput} value={generalInputState} type="text" name='general-group' /><label className='main__content-value'>гривень</label>
             <div className='main__content-box'>
               <p className='main__content-out'>Єдиний соціальний внесок:</p>
-              <p className='main__content-out'></p>
+              <p className='main__content-out'>{esvGeneralState}</p>
             </div>
             <div className='main__content-box'>
               <p className='main__content-out'>Єдиний податок:</p>
-              <p className='main__content-out'></p>
+              <p className='main__content-out'>{taxGeneralState}</p>
             </div>
             <div className='main__content-box'>
               <p className='main__content-out'>Військовий збір:</p>
-              <p className='main__content-out'></p>
+              <p className='main__content-out'>{vzGeneralState}</p>
             </div>
             <div className='main__content-box'>
               <p className='main__content-out'>Загальна сума податку:</p>
-              <p className='main__content-out red'></p>
+              <p className='main__content-out red'>{costGeneralState}</p>
             </div>
             <div className='main__content-box'>
               <p className='main__content-out'>На руки отримаєте:</p>
-              <p className='main__content-out green'></p>
+              <p className='main__content-out green'>{receivedGeneralState}</p>
             </div>
-            <input className='main__content-btn' type="button" value="Порахувати" />
+            <input className='main__content-btn' onClick={countGeneral} type="button" value="Порахувати" />
           </div>
         </div>
       </main>
