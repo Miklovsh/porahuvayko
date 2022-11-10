@@ -4,7 +4,7 @@ import Context from './Context';
 
 function Header() {
 
-  const value = useContext(Context);
+  const value = useContext(Context);  // дістав обєкт value який передав за допомогою Context.Provider з батьківського компоненту App
 
   return (
     <div className="Header">

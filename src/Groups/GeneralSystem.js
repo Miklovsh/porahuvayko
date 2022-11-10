@@ -3,21 +3,24 @@ import Context from "../Context";
 
 function GeneralSystem(props) {
 
-  const value = useContext(Context);
+  const value = useContext(Context); // дістав обєкт value який передав за допомогою Context.Provider з батьківського компоненту App
 
-  let inputMain = React.createRef();
-  const [inputMainState, setInputMainState] = useState('');
+  let inputMain = React.createRef(); // створення нового ref
+  const [inputMainState, setInputMainState] = useState(''); // Стейт для інпупа куди буде вводитися сума яку потрібно порахувати
   
-  const [esvState, setEsvState] = useState('');
-  const [taxState, setTaxState] = useState('');
+  const [esvState, setEsvState] = useState(''); //ЄСВ - єдиний соціальний внесок. Стейт для поля Єдиний соціальний внесок, в полі Єдиний соціальний внесок виводиться результат податку ЄСВ
+  const [taxState, setTaxState] = useState(''); //Стейт для поля єдиний податок, в полі єдиний податок виводяться результати єдиного податку
   const [armyState, setArmyState] = useState(''); // військовий збір. Стейт для поля Військовий збір, в полі Військовий збір виводиться результат податку на військовий збір
-  const [costState, setCostState] = useState('');
-  const [receivedState, setReceivedState] = useState('');
+  const [costState, setCostState] = useState(''); // Стейт для поля Загальна сума, в полі загальна сума виводиться результат суми всіх податків
+  const [receivedState, setReceivedState] = useState(''); // Стейт для поля  На руки, в полі На руки виводиться сума яка залишиться після сплати податків
 
+  //Функція містить метод стейту inputMainState, метод приймає з атрибуту ref змінене значення в властивості current та записує результат в стейт inputMainState
   function changeInputMain() {
     setInputMainState(inputMain.current.value);
   }
 
+
+// Якщо виконується умова то функція count в методах стейтів виконує обчислення, а результати записує в стейт
   function count() {
     if (inputMainState.length > 0 && inputMainState.length < 11) {
       setEsvState(`${inputMain.current.value / 100 * props.generalEsv} гривень`);
