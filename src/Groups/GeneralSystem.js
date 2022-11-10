@@ -10,7 +10,7 @@ function GeneralSystem(props) {
   
   const [esvState, setEsvState] = useState('');
   const [taxState, setTaxState] = useState('');
-  const [vzState, setVzState] = useState(''); //vz - військовий збір. Стейт для поля Військовий збір, в полі Військовий збір виводиться результат податку на військовий збір
+  const [armyState, setArmyState] = useState(''); // військовий збір. Стейт для поля Військовий збір, в полі Військовий збір виводиться результат податку на військовий збір
   const [costState, setCostState] = useState('');
   const [receivedState, setReceivedState] = useState('');
 
@@ -22,9 +22,9 @@ function GeneralSystem(props) {
     if (inputMainState.length > 0 && inputMainState.length < 11) {
       setEsvState(`${inputMain.current.value / 100 * props.generalEsv} гривень`);
       setTaxState(`${inputMain.current.value / 100 * props.tax} гривень`);
-      setVzState(`${inputMain.current.value / 100 * props.vz} гривень`);
-      setCostState(`${inputMain.current.value / 100 * props.generalEsv + (inputMain.current.value / 100 * props.tax) + (inputMain.current.value / 100 * props.vz)} гривень`);
-      setReceivedState(`${inputMain.current.value - (inputMain.current.value / 100 * props.generalEsv) - (inputMain.current.value / 100 * props.tax) - (inputMain.current.value / 100 * props.vz)} гривень`);
+      setArmyState(`${inputMain.current.value / 100 * props.armyTax} гривень`);
+      setCostState(`${inputMain.current.value / 100 * props.generalEsv + (inputMain.current.value / 100 * props.tax) + (inputMain.current.value / 100 * props.armyTax)} гривень`);
+      setReceivedState(`${inputMain.current.value - (inputMain.current.value / 100 * props.generalEsv) - (inputMain.current.value / 100 * props.tax) - (inputMain.current.value / 100 * props.armyTax)} гривень`);
     } else {
       alert('Поле "Сума для оподаткування:" не може бути пустим або містити більше 10 символів!');
     }
@@ -46,7 +46,7 @@ function GeneralSystem(props) {
         </div>
         <div className='main__content-box'>
           <p className='main__content-out'>Військовий збір:</p>
-          <p className='main__content-out'>{vzState}</p>
+          <p className='main__content-out'>{armyState}</p>
         </div>
         <div className='main__content-box'>
           <p className='main__content-out'>Загальна сума податку:</p>

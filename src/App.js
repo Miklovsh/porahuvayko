@@ -35,7 +35,7 @@ function App() {
 
   const esv = 1474; // ЄСВ - єдиний соціальний внесок. Ця зміна використовується для 1,2,3 групи.
   const general_esv = 22 // ЄСВ - єдиний соціальний внесок. Ця зміна використовується для підрахунку ЄСВ фопів які на загальні системі 
-  const vz = 1.5 // vz - військовий збір, ця зміна використовується для підрахунку військового збору для фопів які на загальні системі
+  const armyTax = 1.5 //  військовий збір, ця зміна використовується для підрахунку військового збору для фопів які на загальні системі
   return (
     <Context.Provider value={value}>
       <div className="App">
@@ -46,7 +46,7 @@ function App() {
             <FirstGroup esv={esv} tax={248.10}></FirstGroup>
             <SecondGroup esv={esv} tax={1300}></SecondGroup>
             <ThirdGroup esv={esv} tax={5}></ThirdGroup>
-            <GeneralSystem generalEsv={general_esv} tax={18} vz={vz}></GeneralSystem>
+            <GeneralSystem generalEsv={general_esv} tax={18} armyTax={armyTax}></GeneralSystem>
           </div>
         </main>
         <Footer></Footer>

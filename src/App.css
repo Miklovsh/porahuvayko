@@ -1,31 +1,35 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    display: none;
-    -webkit-appearance: none;
-    margin: 0; 
+  display: none;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.App{
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.App {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 20px;
   line-height: 24px;
   color: #00BFFF;
 }
 
-.header{
+.header {
   background-color: #00BFFF;
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.header__container{
+.header__container {
   max-width: 1200px;
   padding-left: 10px;
   padding-right: 10px;
@@ -33,14 +37,14 @@ input::-webkit-inner-spin-button {
   margin-right: auto;
 }
 
-.header__top{
+.header__top {
   padding-top: 20px;
   padding-bottom: 20px;
   display: flex;
   align-items: center;
 }
 
-.header__title{
+.header__title {
 
   font-size: 18px;
   line-height: 22px;
@@ -49,12 +53,12 @@ input::-webkit-inner-spin-button {
   color: #fff;
 }
 
-.header__input-box{
-margin-left: auto;
-margin-right: auto;
+.header__input-box {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.header__input-group{
+.header__input-group {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 20px;
   line-height: 24px;
@@ -65,24 +69,24 @@ margin-right: auto;
   margin-left: 30px;
 }
 
-.header__input-group:hover{
+.header__input-group:hover {
   background-color: #fff;
   color: #00BFFF;
   transition: all .5s;
 }
 
-.header__input-active{
+.header__input-active {
   background-color: #fff;
   color: #00BFFF;
 }
 
-.main{
+.main {
   margin-top: 50px;
   margin-bottom: 50px;
   min-height: calc(100vh - 350px);
 }
 
-.main__container{
+.main__container {
   max-width: 1200px;
   padding-left: 10px;
   padding-right: 10px;
@@ -90,38 +94,38 @@ margin-right: auto;
   margin-right: auto;
 }
 
-.main__info{
+.main__info {
   font-size: 36px;
   line-height: 42px;
   color: #00BFFF;
   text-align: center;
 }
 
-.main__content{
-text-align: center;
-margin-top: 80px;
-display: none;
+.main__content {
+  text-align: center;
+  margin-top: 80px;
+  display: none;
 }
 
-.main__content-active{
+.main__content-active {
   display: block;
 }
 
-.main__content-title{
+.main__content-title {
   text-align: center;
   font-size: 28px;
   line-height: 32px;
   color: #00BFFF;
 }
 
-.main__content-description{
+.main__content-description {
   font-size: 22px;
   line-height: 26px;
   color: #00BFFF;
   text-align: center;
 }
 
-.main__content-input{
+.main__content-input {
   font-size: 16px;
   line-height: 20px;
   color: #00BFFF;
@@ -134,25 +138,25 @@ display: none;
 }
 
 
-.main__content-box{
+.main__content-box {
   display: flex;
-justify-content: center;
+  justify-content: center;
 }
 
-.main__content-out{
+.main__content-out {
   font-family: 'Times New Roman', Times, serif;
   margin-right: 3px;
 }
 
-.red{
+.red {
   color: red;
 }
 
-.green{
+.green {
   color: green;
 }
 
-.main__content-btn{
+.main__content-btn {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 20px;
   line-height: 24px;
@@ -162,32 +166,32 @@ justify-content: center;
   padding: 5px 10px;
 }
 
-.main__content-btn:hover{
+.main__content-btn:hover {
   color: #00BFFF;
   background-color: #fff;
   transition: all .5s;
 }
 
-.footer{
+.footer {
   margin-top: 30px;
   background-color: #00BFFF;
   padding-top: 30px;
   padding-bottom: 27px;
 }
 
-.footer__developer-label{
+.footer__developer-label {
   font-size: 16px;
   line-height: 20px;
   color: #fff;
 }
 
-.footer__developer{
+.footer__developer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.footer__developer-name{
+.footer__developer-name {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 16px;
   line-height: 20px;
@@ -196,7 +200,101 @@ justify-content: center;
   margin-left: 3px;
 }
 
-.footer__developer-name:hover{
+.footer__developer-name:hover {
   text-decoration: underline;
 }
 
+@media screen and (max-width: 991px) {
+  .App {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .header__input-group {
+    font-size: 16px;
+    line-height: 20px;
+    margin-left: 20px;
+  }
+
+  .main__info {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .main__content-title {
+    font-size: 26px;
+    line-height: 30px;
+  }
+
+  .main__content-description {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .main__content-btn {
+    font-size: 20px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__input-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header__input-group {
+    margin-left: 0px;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header__logo {
+    max-width: 100%;
+  }
+
+  .header__title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .main__info {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .main__content {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .header__top {
+    flex-direction: column;
+  }
+
+  .header__title {
+    text-align: center;
+  }
+
+  .header__input-box {
+    margin-top: 15px;
+  }
+
+  .main__content-input {
+    margin-top: 10px;
+  }
+
+  .main__content-box {
+    flex-direction: column;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .main__content-out {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
